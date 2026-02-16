@@ -92,7 +92,8 @@ end
             question_en: faq.question_en,
             answer_ar: faq.answer_ar,
             answer_en: faq.answer_en,
-            is_published: faq.is_published
+            is_published: faq.is_published,
+            video_url: faq.video_url,
           }
         }
     }
@@ -132,8 +133,6 @@ end
     params.require(:blog).permit(
       :title_ar,
       :title_en,
-      #:image_alt_text_ar,
-      #:image_alt_text_en,
       :meta_title_ar,
       :meta_title_en,
       :slug,
@@ -141,7 +140,8 @@ end
       :meta_description_en,
       :category,
       :is_published,
-      # :photo_id,
+      :description_ar,
+      :description_en,
       :slug_ar,
       blog_photos_attributes: [:id, :photo, :alt_ar, :alt_en, :is_arabic, :_destroy]
     )

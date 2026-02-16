@@ -1,11 +1,31 @@
 class VideosController < ApplicationController
   def index
-    videos = Video.all
+    videos = Video.order(:id).map do |video|
+      {
+        id: video.id,
+        title_ar: video.title_ar,
+        title_en: video.title_en,
+        video_url: video.video_url,
+        is_published: video.is_published,
+        img_alt_text_ar: video.img_alt_text_ar,
+        img_alt_text_en: video.img_alt_text_en,
+        cover_image: video.cover_image.attached? ? video.cached_cover_image_url : nil
+      }
+    end
     render json: videos
   end
   def show
     video = Video.find(params[:id])
-    render json: video
+    render json: {
+      id: video.id,
+      title_ar: video.title_ar,
+      title_en: video.title_en,
+      video_url: video.video_url,
+      is_published: video.is_published,
+      img_alt_text_ar: video.img_alt_text_ar,
+      img_alt_text_en: video.img_alt_text_en,
+      cover_image: video.cover_image.attached? ? video.cached_cover_image_url : nil
+    }
   end
   def create
     video = Video.new(video_params)
@@ -34,6 +54,6 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:title_ar, :title_en, :video_url, :is_published,:img_alt_text_ar,:img_alt_text_en,:photo)
+    params.require(:video).permit(:title_ar, :title_en, :video_url, :is_published,:img_alt_text_ar,:img_alt_text_en,:cover_image)
   end
 end

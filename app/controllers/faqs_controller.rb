@@ -42,7 +42,7 @@ class FaqsController < ApplicationController
   end
   # GET /faqs
   def index_without_plog
-    faqs = Faq.where(is_deleted: false, blog_id: nil).order(:id).map do |faq|
+    faqs = Faq.where(parentable_id: nil).order(:id).map do |faq|
       {
         id: faq.id,
         question_ar: faq.question_ar,

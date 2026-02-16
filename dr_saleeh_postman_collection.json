@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "dr-saleeh-collection",
+		"name": "DR_SALEEH API",
+		"description": "Postman collection for DR_SALEEH Rails API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "user[name]", "value": "Test User", "type": "text" },
+								{ "key": "user[email]", "value": "test@milaknights.com", "type": "text" },
+								{ "key": "user[password]", "value": "password", "type": "text" },
+								{ "key": "user[password_confirmation]", "value": "password", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "signup"]
+						}
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "email", "value": "test@milaknights.com", "type": "text" },
+								{ "key": "password", "value": "password", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{token}}" }
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "user[name]", "value": "Updated Name", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/users/:id",
+							"host": ["{{base_url}}"],
+							"path": ["users", ":id"],
+							"variable": [{ "key": "id", "value": "1" }]
+						}
+					}
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{token}}" }
+						],
+						"url": {
+							"raw": "{{base_url}}/users/:id",
+							"host": ["{{base_url}}"],
+							"path": ["users", ":id"],
+							"variable": [{ "key": "id", "value": "1" }]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Blogs",
+			"item": [
+				{
+					"name": "List Blogs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{token}}" }
+						],
+						"url": {
+							"raw": "{{base_url}}/blogs",
+							"host": ["{{base_url}}"],
+							"path": ["blogs"]
+						}
+					}
+				},
+				{
+					"name": "Get Blog",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{token}}" }
+						],
+						"url": {
+							"raw": "{{base_url}}/blogs/:id",
+							"host": ["{{base_url}}"],
+							"path": ["blogs", ":id"],
+							"variable": [{ "key": "id", "value": "1" }]
+						}
+					}
+				},
+				{
+					"name": "Create Blog",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{token}}" }
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "blog[title_en]", "value": "My New Blog", "type": "text" },
+								{ "key": "blog[title_ar]", "value": "مدونتي الجديدة", "type": "text" },
+								{ "key": "blog[category]", "value": "Web_design", "type": "text" },
+								{ "key": "blog[blog_photos_attributes][0][alt_en]", "value": "Alt text", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/blogs",
+							"host": ["{{base_url}}"],
+							"path": ["blogs"]
+						}
+					}
+				},
+				{
+					"name": "Update Blog",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{token}}" }
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "blog[title_en]", "value": "Updated Title", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/blogs/:id",
+							"host": ["{{base_url}}"],
+							"path": ["blogs", ":id"],
+							"variable": [{ "key": "id", "value": "1" }]
+						}
+					}
+				},
+				{
+					"name": "Delete Blog",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{token}}" }
+						],
+						"url": {
+							"raw": "{{base_url}}/blogs/:id",
+							"host": ["{{base_url}}"],
+							"path": ["blogs", ":id"],
+							"variable": [{ "key": "id", "value": "1" }]
+						}
+					}
+				},
+				{
+					"name": "Contents (Nested)",
+					"item": [
+						{
+							"name": "List Contents",
+							"request": {
+								"method": "GET",
+								"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+								"url": {
+									"raw": "{{base_url}}/blogs/:blog_id/contents",
+									"host": ["{{base_url}}"],
+									"path": ["blogs", ":blog_id", "contents"],
+									"variable": [{ "key": "blog_id", "value": "1" }]
+								}
+							}
+						},
+						{
+							"name": "Create Content",
+							"request": {
+								"method": "POST",
+								"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{ "key": "content[content_en]", "value": "Paragraph text", "type": "text" },
+										{ "key": "content[content_ar]", "value": "نص الفقرة", "type": "text" }
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/blogs/:blog_id/contents",
+									"host": ["{{base_url}}"],
+									"path": ["blogs", ":blog_id", "contents"],
+									"variable": [{ "key": "blog_id", "value": "1" }]
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "FAQs (Nested)",
+					"item": [
+						{
+							"name": "List FAQs",
+							"request": {
+								"method": "GET",
+								"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+								"url": {
+									"raw": "{{base_url}}/blogs/:blog_id/faqs",
+									"host": ["{{base_url}}"],
+									"path": ["blogs", ":blog_id", "faqs"],
+									"variable": [{ "key": "blog_id", "value": "1" }]
+								}
+							}
+						},
+						{
+							"name": "Create FAQ",
+							"request": {
+								"method": "POST",
+								"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{ "key": "faq[question_en]", "value": "Q?", "type": "text" },
+										{ "key": "faq[answer_en]", "value": "A.", "type": "text" }
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/blogs/:blog_id/faqs",
+									"host": ["{{base_url}}"],
+									"path": ["blogs", ":blog_id", "faqs"],
+									"variable": [{ "key": "blog_id", "value": "1" }]
+								}
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Operations",
+			"item": [
+				{
+					"name": "List Operations",
+					"request": {
+						"method": "GET",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"url": {
+							"raw": "{{base_url}}/operations",
+							"host": ["{{base_url}}"],
+							"path": ["operations"]
+						}
+					}
+				},
+				{
+					"name": "Create Operation",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "operation[title_en]", "value": "New Op", "type": "text" },
+								{ "key": "operation[category]", "value": "branding", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/operations",
+							"host": ["{{base_url}}"],
+							"path": ["operations"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Galleries",
+			"item": [
+				{
+					"name": "List Galleries",
+					"request": {
+						"method": "GET",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"url": {
+							"raw": "{{base_url}}/galleries",
+							"host": ["{{base_url}}"],
+							"path": ["galleries"]
+						}
+					}
+				},
+				{
+					"name": "Create Gallery",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "gallery[title_en]", "value": "My Gallery", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/galleries",
+							"host": ["{{base_url}}"],
+							"path": ["galleries"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Videos",
+			"item": [
+				{
+					"name": "List Videos",
+					"request": {
+						"method": "GET",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"url": {
+							"raw": "{{base_url}}/videos",
+							"host": ["{{base_url}}"],
+							"path": ["videos"]
+						}
+					}
+				},
+				{
+					"name": "Create Video",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "video[title_en]", "value": "My Video", "type": "text" },
+								{ "key": "video[video_url]", "value": "http://youtube.com/...", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/videos",
+							"host": ["{{base_url}}"],
+							"path": ["videos"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "FAQs (Global)",
+			"item": [
+				{
+					"name": "List Global FAQs",
+					"request": {
+						"method": "GET",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"url": {
+							"raw": "{{base_url}}/faqs",
+							"host": ["{{base_url}}"],
+							"path": ["faqs"]
+						}
+					}
+				},
+				{
+					"name": "Create Global FAQ",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "faq[question_en]", "value": "Global Q?", "type": "text" },
+								{ "key": "faq[answer_en]", "value": "Global A.", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/faqs",
+							"host": ["{{base_url}}"],
+							"path": ["faqs"]
+						}
+					}
+				},
+				{
+					"name": "Update Global FAQ",
+					"request": {
+						"method": "PUT",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "faq[question_en]", "value": "Updated Q", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/faqs/:id",
+							"host": ["{{base_url}}"],
+							"path": ["faqs", ":id"],
+							"variable": [{ "key": "id", "value": "1" }]
+						}
+					}
+				},
+				{
+					"name": "Delete Global FAQ",
+					"request": {
+						"method": "DELETE",
+						"header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+						"url": {
+							"raw": "{{base_url}}/faqs/:id",
+							"host": ["{{base_url}}"],
+							"path": ["faqs", ":id"],
+							"variable": [{ "key": "id", "value": "1" }]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
