@@ -19,7 +19,7 @@ class OperationsController < ApplicationController
         photos: operation.operation_photos.map do |ph|
           {
             id: ph.id,
-            photo_url: ph.photo.attached? ? url_for(ph.photo) : nil,
+            photo_url: ph.photo.attached? ? ph.cached_photo_url : nil,
             alt_ar: ph.alt_ar,
             alt_en: ph.alt_en,
             is_landing: ph.is_landing
@@ -53,7 +53,7 @@ class OperationsController < ApplicationController
       photos: operation.operation_photos.map do |photo|
         {
           id: photo.id,
-          photo_url: photo.photo.attached? ? url_for(photo.photo) : nil,
+          photo_url: photo.photo.attached? ? photo.cached_photo_url : nil,
           alt_ar: photo.alt_ar,
           alt_en: photo.alt_en,
           is_landing: photo.is_landing
@@ -70,7 +70,7 @@ class OperationsController < ApplicationController
           photos: content.content_photos.map do |photo|
             {
               id: photo.id,
-              photo_url: photo.attached? ? url_for(photo) : nil
+              photo_url: photo.photo.attached? ? photo.cached_photo_url : nil
             }
           end
         }
