@@ -25,6 +25,8 @@ class BlogsController < ApplicationController
         },
         meta_description_ar: blog.meta_description_ar,
         meta_description_en: blog.meta_description_en,
+        description_ar: blog.description_ar,
+        description_en: blog.description_en,
         meta_title_ar: blog.meta_title_ar,
         meta_title_en: blog.meta_title_en,
         is_published: blog.is_published
