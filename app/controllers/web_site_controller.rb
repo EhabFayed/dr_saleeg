@@ -199,7 +199,7 @@ skip_before_action :authorize_request
         title_ar: video.title_ar,
         title_en: video.title_en,
         is_published: video.is_published,
-        url: video.url,
+        url: video.video_url,
         cover_image: video.cover_image.attached? ? video.cached_cover_image_url : nil,
         img_alt_text_ar: video.img_alt_text_ar,
         img_alt_text_en: video.img_alt_text_en,
