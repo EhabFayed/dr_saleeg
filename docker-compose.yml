@@ -38,7 +38,7 @@ services:
      REDIS_URL: redis://redis:6379/0
      RAILS_LOG_TO_STDOUT: "true"
      RAILS_SERVE_STATIC_FILES: "true"
-     RAILS_HOST: backend.dr-saleh.com #need to make sure from domain
+     RAILS_HOST: backend.drsalehalkhalaf.com #need to make sure from domain
      RAILS_PROTOCOL: https
      RAILS_ASSUME_SSL: "false"
      RAILS_FORCE_SSL: "false"
@@ -48,7 +48,7 @@ services:
     volumes:
       - storage:/app/storage
     ports:
-     - "9005:900  5"  # Map host port 9001 to container port 9001
+     - "9005:9005"  # Map host port 9001 to container port 9001
     command: ["bash", "-c", "rm -f tmp/pids/server.pid && bin/rails server -b 0.0.0.0 -p ${PORT:-9005}"]
     healthcheck:
       test: ["CMD", "sh", "-c", "curl -f http://localhost:${PORT:-9005}/up || exit 1"]

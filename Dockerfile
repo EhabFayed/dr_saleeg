@@ -30,4 +30,4 @@ EXPOSE 9005
 ENTRYPOINT ["docker-entrypoint"]
 
 # Start Rails server
-CMD ["bash", "-c", "rm -f tmp/pids/server.pid && bin/rails server -b 0.0.0.0 -p ${PORT:-9002}"]
+CMD ["bash", "-c", "rm -f tmp/pids/server.pid && bin/rails server -b 0.0.0.0 -p ${PORT:-9005}"]

@@ -53,9 +53,11 @@ Rails.application.configure do
 
   # Set host to be used by links generated in mailer templates.
 config.action_mailer.default_url_options = {
-    host: ENV.fetch("RAILS_HOST", "backend.dr-saleh.com"),
+    host: ENV.fetch("RAILS_HOST", "backend.drsalehalkhalaf.com"),
     protocol: ENV.fetch("RAILS_PROTOCOL", "https")
   }
+  Rails.application.routes.default_url_options[:host] = "backend.drsalehalkhalaf.com"
+  Rails.application.routes.default_url_options[:protocol] = "https"
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
   #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
