@@ -34,5 +34,13 @@ Rails.application.routes.draw do
   post '/faqs', to: 'faqs#create_without_plog'
   put '/faqs/:id', to: 'faqs#update_without_plog'
   delete '/faqs/:id', to: 'faqs#delete_without_plog'
+  get "blogs_landing", to: "web_site#blogs_landing"
+  get "blog_show/", to: "web_site#blog_show"
+  get "operations_landing", to: "web_site#operations_landing"
+  get "operation_show/", to: "web_site#operation_show"
+  get 'faq_about_us', to: 'web_site#faq_about_us'
+  get 'gallery_landing', to: 'web_site#gallery_landing'
+  get 'video_landing', to: 'web_site#video_landing'
+
 
 end
