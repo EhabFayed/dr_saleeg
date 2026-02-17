@@ -28,10 +28,10 @@ services:
     image: myapp_image:latest
     restart: always
     depends_on:
-    db:
-      condition: service_healthy
-    redis:
-      condition: service_healthy
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     environment:
      RAILS_ENV: production
      DATABASE_URL: postgres://postgres:password@db:5432/app_production
