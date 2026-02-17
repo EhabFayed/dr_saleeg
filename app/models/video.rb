@@ -2,7 +2,7 @@ class Video < ApplicationRecord
   validates :title_ar, :title_en,:video_url, presence: true
   has_one_attached :cover_image
   after_commit :clear_cover_image_cache, on: %i[update destroy]
-
+  scope :published, -> { where(is_published: true) }
   def cached_cover_image_url
     return nil unless cover_image.attached?
 
