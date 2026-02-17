@@ -184,8 +184,8 @@ skip_before_action :authorize_request
           {
             id: photo.id,
             url: photo.photo.attached? ? photo.cached_photo_url : nil,
-            alt: photo.is_arabic ? photo.alt_ar : photo.alt_en,
-            is_arabic: photo.is_arabic
+            alt_ar: photo.alt_ar,
+            alt_en: photo.alt_en,
           }
         end
       }
@@ -201,6 +201,8 @@ skip_before_action :authorize_request
         is_published: video.is_published,
         url: video.url,
         cover_image: video.cover_image.attached? ? video.cached_cover_image_url : nil,
+        img_alt_text_ar: video.img_alt_text_ar,
+        img_alt_text_en: video.img_alt_text_en,
       }
     end
     render json: videos
