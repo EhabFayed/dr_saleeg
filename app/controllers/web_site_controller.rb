@@ -36,13 +36,12 @@ skip_before_action :authorize_request
         category: operation.category,
         slug: operation.slug,
         slug_ar: operation.slug_ar,
-        photos: operation.operation_photos.where(is_landing: true).map do |photo|
+        photos: operation.operation_photos.map do |photo|
           {
             id: photo.id,
             url: photo.photo.attached? ? photo.cached_photo_url : nil,
-            alt_ar: photo.alt_ar,
-            alt_en: photo.alt_en,
-            is_landing: photo.is_landing
+            alt: photo.is_arabic ? photo.alt_ar : photo.alt_en,
+            is_arabic: photo.is_arabic
           }
         end
       }
@@ -64,13 +63,12 @@ skip_before_action :authorize_request
             meta_description_en: operation.meta_description_en,
             meta_title_ar: operation.meta_title_ar,
             meta_title_en: operation.meta_title_en,
-            photos: operation.operation_photos.where(is_landing: false).map do |photo|
+            photos: operation.operation_photos.map do |photo|
               {
                 id: photo.id,
                 url: photo.photo.attached? ? photo.cached_photo_url : nil,
-                alt_ar: photo.alt_ar,
-                alt_en: photo.alt_en,
-                is_landing: photo.is_landing
+                alt: photo.is_arabic ? photo.alt_ar : photo.alt_en,
+                is_arabic: photo.is_arabic
               }
             end,
             contents: operation.contents.where(is_deleted: false, is_published: true).order(:id).map do |content|
@@ -179,6 +177,7 @@ skip_before_action :authorize_request
         id: gallery.id,
         title_ar: gallery.title_ar,
         title_en: gallery.title_en,
+        category: gallery.category,
         is_published: gallery.is_published,
         photos: gallery.gallery_photo.map do |photo|
           {

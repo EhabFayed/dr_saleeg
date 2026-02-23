@@ -7,6 +7,7 @@ class GalleriesController < ApplicationController
         title_ar: gallery.title_ar,
         title_en: gallery.title_en,
         is_published: gallery.is_published,
+        category: gallery.category,
         gallery_photos: gallery.gallery_photo.order(:id).map do |photo|
           {
             id: photo.id,
@@ -26,6 +27,7 @@ class GalleriesController < ApplicationController
       title_ar: gallery.title_ar,
       title_en: gallery.title_en,
       is_published: gallery.is_published,
+      category: gallery.category,
       gallery_photos: gallery.gallery_photo.order(:id).map do |photo|
         {
           id: photo.id,
@@ -60,6 +62,6 @@ class GalleriesController < ApplicationController
 private
 
 def gallery_params
-  params.require(:gallery).permit(:title_ar, :title_en, :is_published, gallery_photo_attributes: [:id, :photo, :alt_ar, :alt_en, :_destroy])
+  params.require(:gallery).permit(:title_ar, :title_en, :category, :is_published, gallery_photo_attributes: [:id, :photo, :alt_ar, :alt_en, :_destroy])
 end
 end

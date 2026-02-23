@@ -20,9 +20,8 @@ class OperationsController < ApplicationController
           {
             id: ph.id,
             photo_url: ph.photo.attached? ? ph.cached_photo_url : nil,
-            alt_ar: ph.alt_ar,
-            alt_en: ph.alt_en,
-            is_landing: ph.is_landing
+            alt: ph.is_arabic ? ph.alt_ar : ph.alt_en,
+            is_arabic: ph.is_arabic
           }
         end
       }
@@ -54,9 +53,8 @@ class OperationsController < ApplicationController
         {
           id: photo.id,
           photo_url: photo.photo.attached? ? photo.cached_photo_url : nil,
-          alt_ar: photo.alt_ar,
-          alt_en: photo.alt_en,
-          is_landing: photo.is_landing
+          alt: photo.is_arabic ? photo.alt_ar : photo.alt_en,
+          is_arabic: photo.is_arabic
         }
       end,
       contents: operation.contents.map do |content|
@@ -137,7 +135,7 @@ class OperationsController < ApplicationController
         :alt_ar,
         :alt_en,
         :photo,
-        :is_landing,
+        :is_arabic,
         :_destroy
       ]
     )
