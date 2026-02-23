@@ -2,7 +2,7 @@ class OperationPhoto < ApplicationRecord
   belongs_to :operation
   has_one_attached :photo
 
-  validates :alt_ar, :alt_en, presence: true
+  # validates :alt_ar, :alt_en, presence: true
    after_commit :clear_photo_cache, on: %i[update destroy]
 
   def cached_photo_url
